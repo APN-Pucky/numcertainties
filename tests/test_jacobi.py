@@ -2,6 +2,7 @@ import jacobi as jb
 import pytest 
 import numpy as np
 from numcertainties import nunc
+from numcertainties import uunc
 
 def test_jacobi():
 	x = [1, 2]
@@ -17,7 +18,14 @@ def test_jacobi():
 #	assert np.all(acov == zcov)
 
 	n = nunc(x, xcov)
+	print("nstd",n.get_std())
 	nn = n**4
-#	print("n",n)
-	print("nn",nn)
+	print("nnval",nn)
+	print("nnstd",nn.get_std())
+
+	n = uunc(x, xcov)
+	print("ustd",n.get_std())
+	nn = n**4
+	print("uval",nn)
+	print("uustd",nn.get_std())
 test_jacobi()
