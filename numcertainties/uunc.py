@@ -6,7 +6,7 @@ import itertools
 
 class uunc(unc):
 # We keep a stack of operations until we need to evaluate the result
-	def propagate(self):
+	def _propagate(self):
 		# TODO maybe more complicted than this for higher dimensions
 		if len(self.x)>1:
 			ux = uncertainties.correlated_values(self.x,self.xcov)
@@ -18,4 +18,4 @@ class uunc(unc):
  	       #print("y" ,y,y.__class__)
 		ycov = uncertainties.covariance_matrix([*y])
  	       #print ("ycov", ycov)
-		return self.__class__(unumpy.nominal_values(y),ycov)
+		return self.__class__(unumpy.nominal_values(y),ycov,store=self.store)

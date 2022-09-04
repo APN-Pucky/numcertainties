@@ -1,8 +1,8 @@
-from numcertainties import unc
+from numcertainties import unc,identity
 import numpy as np
 import mcerp
 
-npts = 100000
+npts = 1000000
 
 # from https://gist.github.com/wiso/ce2a9919ded228838703c1c7c7dad13b
 def correlation_from_covariance(covariance):
@@ -13,8 +13,10 @@ def correlation_from_covariance(covariance):
     return correlation
 
 class munc(unc):
+	def __init__(self, x, xcov,stack=identity,store=True):
+		super().__init__(x, xcov,stack,store)
 # We keep a stack of operations until we need to evaluate the result
-	def propagate(self):
+	def _propagate(self):
 		# TODO maybe more complicted than this for higher dimensions
 		var = np.diag(self.xcov)
 		std = np.sqrt(var)
@@ -32,4 +34,4 @@ class munc(unc):
 		#print("y" ,y,y.__class__)
 		ycov = mcerp.covariance_matrix([*y])
 		#print ("ycov", ycov)
-		return self.__class__([y[i].mean for i in range(len(y))],ycov)
+		return self.__class__([y[i].mean for i in range(len(y))],ycov,store=self.store)
