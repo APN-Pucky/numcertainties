@@ -5,7 +5,3 @@ This project aims to unify the use of several error propagation libraries in pyt
 - <https://github.com/HDembinski/jacobi>
 - <https://github.com/lebigot/uncertainties/>
 - <https://github.com/tisimst/mcerp>
-
-TODO:
-- p values / confidence
-- handle mixed types of uncertainties
