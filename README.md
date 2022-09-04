@@ -7,4 +7,8 @@ This project aims to unify the use of several error propagation libraries in pyt
 - <https://github.com/tisimst/mcerp>
 - (<https://github.com/tisimst/soerp>)
 
-In future general differentiation routines could be used to get the jacobian similar to the `jacobi` package to get uncertainties from there.
+In future general differentiation routines could be used to get the jacobian similar to the `jacobi` package to get uncertainties from there:
+
+- <https://pypi.org/project/numdifftools/>
+- scipy
+- (sympy)
