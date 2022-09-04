@@ -43,7 +43,6 @@ pull: commit
 	git pull
 
 clean-all: clean
-	find source/example/ -type f -name '*.ipynb' | xargs jupyter nbconvert --clear-output --inplace
 
 
 release: push html
