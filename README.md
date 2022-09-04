@@ -15,3 +15,4 @@ In future general differentiation routines could be used to get the jacobian sim
 
 TODO:
 - p values / confidence
+- handle mixed types of uncertainties
