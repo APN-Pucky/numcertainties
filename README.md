@@ -11,4 +11,4 @@ In future general differentiation routines could be used to get the jacobian sim
 
 - <https://pypi.org/project/numdifftools/>
 - scipy
-- (sympy)
+- (sympy for analytic derivatives)
