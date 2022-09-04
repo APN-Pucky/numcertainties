@@ -8,4 +8,4 @@ class nunc(unc):
     def _propagate(self):
         y,ycov=jb.propagate(self.stack, self.x, self.xcov)
         #print("ycov",ycov)
-        return self.__class__(y,ycov,store=self.store)
+        return self.__class__(y,ycov,**self.params)

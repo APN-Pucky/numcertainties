@@ -18,4 +18,4 @@ class uunc(unc):
  	       #print("y" ,y,y.__class__)
 		ycov = uncertainties.covariance_matrix([*y])
  	       #print ("ycov", ycov)
-		return self.__class__(unumpy.nominal_values(y),ycov,store=self.store)
+		return self.__class__(unumpy.nominal_values(y),ycov,**self.params)
