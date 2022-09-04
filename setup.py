@@ -21,8 +21,8 @@ setuptools.setup(
     install_requires=[
         "uncertainties",
         "numpy",
-        "matplotlib",
         "jacobi",
+        "mcerp",
         # "requests",
     ],
     extras_require={

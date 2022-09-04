@@ -1,4 +1,6 @@
 import numpy as np
+
+# TODO take missing operators from https://github.com/tisimst/mcerp/blob/master/mcerp/__init__.py
 class unc:
 # We keep a stack of operations until we need to evaluate the result
     def __init__(self, x, xcov,stack=None):

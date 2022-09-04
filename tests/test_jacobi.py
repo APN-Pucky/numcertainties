@@ -28,4 +28,5 @@ def test_jacobi():
 	nn = n**4
 	print("uval",nn)
 	print("uustd",nn.get_std())
+
 test_jacobi()

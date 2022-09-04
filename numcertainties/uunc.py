@@ -6,13 +6,16 @@ import itertools
 
 class uunc(unc):
 # We keep a stack of operations until we need to evaluate the result
-    def propagate(self):
-	# TODO maybe more complicted than this for higher dimensions
-        ux = uncertainties.correlated_values(self.x,self.xcov)
-        y = self.stack(np.array([*ux]))
-        #y = self.stack(unumpy.uarray(unumpy.nominal_values(np.array([*ux])),unumpy.std_devs(np.array([*ux]))))
-        #print("ux" ,ux)
-        #print("y" ,y,y.__class__)
-        ycov = uncertainties.covariance_matrix([*y])
-        #print ("ycov", ycov)
-        return self.__class__(y,ycov)
+	def propagate(self):
+		# TODO maybe more complicted than this for higher dimensions
+		if len(self.x)>1:
+			ux = uncertainties.correlated_values(self.x,self.xcov)
+		else:
+			ux = [uncertainties.ufloat(self.x,np.sqrt(self.xcov))]
+		y = self.stack(np.array([*ux]))
+ 	       #y = self.stack(unumpy.uarray(unumpy.nominal_values(np.array([*ux])),unumpy.std_devs(np.array([*ux]))))
+ 	       #print("ux" ,ux)
+ 	       #print("y" ,y,y.__class__)
+		ycov = uncertainties.covariance_matrix([*y])
+ 	       #print ("ycov", ycov)
+		return self.__class__(unumpy.nominal_values(y),ycov)
