@@ -1,5 +1,4 @@
 import jacobi as jb
-from smpl import io
 import numpy as np
 
 from numcertainties import unc
