@@ -1,4 +1,4 @@
-name: devel
+name: unstable
 
 on: 
   push:
@@ -20,7 +20,7 @@ jobs:
             fetch-depth: "0"
         - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
 
-        - uses: APN-Pucky/make-python@main
+        - uses: APN-Pucky/make-python-action@main
           with:
             test: true
             publish: false
