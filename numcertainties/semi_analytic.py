@@ -15,9 +15,5 @@ class semi_analytic_uncertainty(base_uncertainty):
 		else:
 			ux = [uncertainties.ufloat(self.x,np.sqrt(self.xcov))]
 		y = self.stack(np.array([*ux]))
- 	       #y = self.stack(unumpy.uarray(unumpy.nominal_values(np.array([*ux])),unumpy.std_devs(np.array([*ux]))))
- 	       #print("ux" ,ux)
- 	       #print("y" ,y,y.__class__)
 		ycov = uncertainties.covariance_matrix([*y])
- 	       #print ("ycov", ycov)
 		return self.__class__(unumpy.nominal_values(y),ycov,**self.params)

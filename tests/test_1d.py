@@ -24,5 +24,16 @@ def test_pow():
 		assert nn.get_value() == pytest.approx([1., 4.], rel=1e-3 if unc is monte_carlo_uncertainty else 0)
 		assert nn.get_std() == pytest.approx([0.06,0.16], rel=1e-3 if unc is monte_carlo_uncertainty else 0)
 
+	x = [1, 2]
+	xcov = [0.03**2, 0.04**2]
+	for unc in jacobian_uncertainty,semi_analytic_uncertainty,monte_carlo_uncertainty:
+		n = unc(x, xcov)
+		nn = (n**2).propagate()
+		print (nn.get_value(), nn.get_std())
+		assert nn.get_value() == pytest.approx([1., 4.], rel=1e-3 if unc is monte_carlo_uncertainty else 0)
+		assert nn.get_std() == pytest.approx([0.06,0.16], rel=1e-3 if unc is monte_carlo_uncertainty else 0)
+
+
+
 test_pow()
 	
