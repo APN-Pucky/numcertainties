@@ -12,21 +12,23 @@ def test_jacobi():
 	y, ycov = jb.propagate(lambda x:x**2, x, xcov)
 	z,zcov = jb.propagate(lambda x:x**2, y, ycov)
 	a,acov = jb.propagate(lambda x:x**4, x, xcov)
-	print (a , z)
-	print(acov , zcov)
-#	assert np.all(a == z)
-#	assert np.all(acov == zcov)
+	assert np.allclose(a , z)
+	assert np.allclose(acov , zcov) 
 
 	n = nunc(x, xcov)
-	print("nstd",n.get_std())
-	nn = n**4
-	print("nnval",nn)
-	print("nnstd",nn.get_std())
+	nn = n**2
+
+	assert np.allclose(nn.get_value() , y)
+	assert np.allclose(nn.get_cov() , ycov)
+
+	nn = nn**2
+
+	assert np.allclose(nn.get_value() , z)
+	assert np.allclose(nn.get_cov() , zcov)
 
 	n = uunc(x, xcov)
-	print("ustd",n.get_std())
 	nn = n**4
-	print("uval",nn)
-	print("uustd",nn.get_std())
+	assert np.allclose(nn.get_value() , a)
+	assert np.allclose(nn.get_cov() , acov)
 
 test_jacobi()
