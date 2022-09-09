@@ -1,8 +1,8 @@
 import jacobi as jb
 import numpy as np
 
-from numcertainties import unc
-class nunc(unc):
+from numcertainties.base import base_uncertainty
+class jacobian_uncertainty(base_uncertainty):
 # We keep a stack of operations until we need to evaluate the result
     def _propagate(self):
         y,ycov=jb.propagate(self.stack, self.x, self.xcov)

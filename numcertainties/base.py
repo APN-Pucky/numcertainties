@@ -4,13 +4,13 @@ def identity(x):
     return x
 
 # TODO take missing operators from https://github.com/tisimst/mcerp/blob/master/mcerp/__init__.py
-class unc:
+class base_uncertainty:
 # We keep a stack of operations until we need to evaluate the result
     def __init__(self, x, xcov,stack=identity,store=False,**params):
         """
         params store
         """
-        self.x= np.array(x)
+        self.x= np.atleast_1d(x)
         self.xcov= np.atleast_1d(xcov)
         self.params = params
         self.params["store"] = store

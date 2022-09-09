@@ -1,10 +1,12 @@
-from numcertainties import unc
+import collections
 import numpy as np
 import uncertainties
 from uncertainties import unumpy
 import itertools
 
-class uunc(unc):
+from numcertainties.base import base_uncertainty
+
+class semi_analytic_uncertainty(base_uncertainty):
 # We keep a stack of operations until we need to evaluate the result
 	def _propagate(self):
 		# TODO maybe more complicted than this for higher dimensions

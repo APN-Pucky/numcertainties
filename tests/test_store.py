@@ -1,16 +1,16 @@
 import pytest 
 import numpy as np
 import numpy.testing as npt
-from numcertainties import munc
-from numcertainties import uunc
-from numcertainties import nunc
+from numcertainties import monte_carlo_uncertainty
+from numcertainties import semi_analytic_uncertainty
+from numcertainties import jacobian_uncertainty
 
 def test_store():
 	x = [1, 2]
 	xcov = [[3, 0],
 	        [0, 4]]
 
-	for unc in munc,:
+	for unc in monte_carlo_uncertainty,:
 
 		print("test_store")
 

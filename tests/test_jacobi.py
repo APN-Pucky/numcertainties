@@ -1,8 +1,8 @@
 import jacobi as jb
 import pytest 
 import numpy as np
-from numcertainties import nunc
-from numcertainties import uunc
+from numcertainties import jacobian_uncertainty
+from numcertainties import semi_analytic_uncertainty
 
 def test_jacobi():
 	x = [1, 2]
@@ -15,7 +15,7 @@ def test_jacobi():
 	assert np.allclose(a , z)
 	assert np.allclose(acov , zcov) 
 
-	n = nunc(x, xcov)
+	n = jacobian_uncertainty(x, xcov)
 	nn = n**2
 
 	assert np.allclose(nn.get_value() , y)
@@ -26,7 +26,7 @@ def test_jacobi():
 	assert np.allclose(nn.get_value() , z)
 	assert np.allclose(nn.get_cov() , zcov)
 
-	n = uunc(x, xcov)
+	n = semi_analytic_uncertainty(x, xcov)
 	nn = n**4
 	assert np.allclose(nn.get_value() , a)
 	assert np.allclose(nn.get_cov() , acov)

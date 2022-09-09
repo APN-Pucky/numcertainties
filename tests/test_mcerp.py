@@ -1,5 +1,5 @@
 import pytest
-from numcertainties import munc as unc
+from numcertainties import monte_carlo_uncertainty as unc
 
 def test_fail_rel():
 	x = [10]

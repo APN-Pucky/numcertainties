@@ -1,7 +1,8 @@
-from numcertainties import unc,identity
+from numcertainties import identity
 import warnings
 import numpy as np
 import mcerp
+from numcertainties.base import base_uncertainty
 
 # from https://gist.github.com/wiso/ce2a9919ded228838703c1c7c7dad13b
 def correlation_from_covariance(covariance):
@@ -11,10 +12,10 @@ def correlation_from_covariance(covariance):
     correlation[covariance == 0] = 0
     return correlation
 
-class munc(unc):
+class monte_carlo_uncertainty(base_uncertainty):
 	def __init__(self, x, xcov,stack=identity,store=True,rel=1e-2,warn=True,**params):
-		var = np.diag(xcov)
-		std = np.sqrt(var)
+		x = np.atleast_1d(x)
+		std = np.sqrt(np.diag(np.atleast_1d(xcov)))
 		if warn and np.any([std[i]/x[i] > rel for i in range(len(x))]):
 			warnings.warn("std/value > rel. Expect bad convergence. This may not agree with linear uncertainty propagation")
 		super().__init__(x, xcov,stack,store=store,rel=rel,warn=warn,**params)
