@@ -82,12 +82,30 @@ class base_uncertainty:
         return np.sqrt(np.diag(self.get_cov()))
 
     def __pow__(self, other, modulo=None):
+        if isinstance(other, self.__class__):
+            new,i1,i2 = self._merge(other)
+            new.stack = lambda x:self.stack(x[i1])**other.stack(x[i2])
+            return new
+        elif isinstance(other,base_uncertainty):
+            raise Exception("Not implemented")
         return self.__class__(self.x,self.xcov, lambda x:self.stack(x)**other,**self.params)
 
     def __rpow__(self, other, modulo=None):
+        if isinstance(other, self.__class__):
+            new,i1,i2 = self._merge(other)
+            new.stack = lambda x:other.stack(x[i2])**self.stack(x[i1])
+            return new
+        elif isinstance(other,base_uncertainty):
+            raise Exception("Not implemented")
         return self.__class__(self.x,self.xcov, lambda x:other**self.stack(x),**self.params)
 
     def __radd__(self, other):
+        if isinstance(other, self.__class__):
+            new,i1,i2 = self._merge(other)
+            new.stack = lambda x:other.stack(x[i2])+self.stack(x[i1])
+            return new
+        elif isinstance(other,base_uncertainty):
+            raise Exception("Not implemented")
         return self.__class__(self.x,self.xcov, lambda x:other+self.stack(x),**self.params)
 
     def __add__(self, other):
@@ -100,12 +118,30 @@ class base_uncertainty:
         return self.__class__(self.x,self.xcov, lambda x:self.stack(x)+other,**self.params)
 
     def __rsub__(self, other):
+        if isinstance(other, self.__class__):
+            new,i1,i2 = self._merge(other)
+            new.stack = lambda x:other.stack(x[i2])-self.stack(x[i1])
+            return new
+        elif isinstance(other,base_uncertainty):
+            raise Exception("Not implemented")
         return self.__class__(self.x,self.xcov, lambda x:other-self.stack(x),**self.params)
 
     def __sub__(self, other):
+        if isinstance(other, self.__class__):
+            new,i1,i2 = self._merge(other)
+            new.stack = lambda x:self.stack(x[i1])-other.stack(x[i2])
+            return new
+        elif isinstance(other,base_uncertainty):
+            raise Exception("Not implemented")
         return self.__class__(self.x,self.xcov, lambda x:self.stack(x)-other,**self.params)
 
     def __rmul__(self, other):
+        if isinstance(other, self.__class__):
+            new,i1,i2 = self._merge(other)
+            new.stack = lambda x:other.stack(x[i2])*self.stack(x[i1])
+            return new
+        elif isinstance(other,base_uncertainty):
+            raise Exception("Not implemented")
         return self.__class__(self.x,self.xcov, lambda x:other*self.stack(x),**self.params)
 
     def __mul__(self, other):
@@ -118,9 +154,21 @@ class base_uncertainty:
         return self.__class__(self.x,self.xcov, lambda x:self.stack(x)*other,**self.params)
 
     def __rtruediv__(self, other):
+        if isinstance(other, self.__class__):
+            new,i1,i2 = self._merge(other)
+            new.stack = lambda x:other.stack(x[i2])/self.stack(x[i1])
+            return new
+        elif isinstance(other,base_uncertainty):
+            raise Exception("Not implemented")
         return self.__class__(self.x,self.xcov, lambda x:other/self.stack(x),**self.params)
 
     def __truediv__(self, other):
+        if isinstance(other, self.__class__):
+            new,i1,i2 = self._merge(other)
+            new.stack = lambda x:self.stack(x[i1])/other.stack(x[i2])
+            return new
+        elif isinstance(other,base_uncertainty):
+            raise Exception("Not implemented")
         return self.__class__(self.x,self.xcov, lambda x:self.stack(x)/other,**self.params)
 
     def __str__(self):
