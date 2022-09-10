@@ -26,7 +26,7 @@ build:
 	python3 -m build
 
 livehtml:
-	sphinx-autobuild "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O) --watch smpl/
+	sphinx-autobuild "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O) --watch numcertainties/
 
 test:
 	rm -f .coverage coverage.xml

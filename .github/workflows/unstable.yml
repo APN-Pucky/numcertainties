@@ -16,7 +16,6 @@ jobs:
         - uses: APN-Pucky/make-python-action@main
           with:
             test: true
-            publish: false
             doc: false
             test-pypi-token: ${{ secrets.test_pypi_token }}
 

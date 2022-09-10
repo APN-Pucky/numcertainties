@@ -1,11 +1,10 @@
-name: devel
+name: unstable
 
 on: 
   push:
-    branches-ignore:
-      - 'master'
+    branches:
       - 'stable'
-    tags-ignore: 
+    tags: 
       - '*'
 
 jobs:
@@ -18,4 +17,5 @@ jobs:
           with:
             test: true
             doc: false
+            pypi-token: ${{ secrets.pypi_token }}
 
