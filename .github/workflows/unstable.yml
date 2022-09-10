@@ -25,4 +25,5 @@ jobs:
             test: true
             publish: false
             doc: false
+            test-pypi-token: ${{ secrets.test_pypi_token }}
 
