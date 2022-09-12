@@ -17,5 +17,6 @@ jobs:
           with:
             test: true
             doc: false
+            coveralls: true
             pypi-token: ${{ secrets.pypi_token }}
 
