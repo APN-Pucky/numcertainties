@@ -18,4 +18,5 @@ jobs:
           with:
             test: true
             doc: false
+            coveralls: true
 
